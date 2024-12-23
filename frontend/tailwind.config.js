@@ -13,8 +13,15 @@ export default {
         flamePea: "#DB5A36",
         accent:"#1B2334",
         accentGray: "#808080",
-      }
+        textColor: "#D1E8FF",
+      },
+      fontFamily: {
+        hanken: ['Hanken Grotesk', 'sans-serif'],
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    // eslint-disable-next-line no-undef
+    require('tailwind-scrollbar-hide'),
+  ],
 }
