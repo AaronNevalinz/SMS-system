@@ -10,8 +10,8 @@ class AfricasTalkingApi extends Controller
     //
     public function sendSMS(Request $request)
     {
-        $username = 'sandbox';
-        $apiKey = 'atsk_a1de847d4aa9ce19c08263ba485e1d9c7a5fb820b69d716a5de077bc65dbe5e5a4d92c92';
+        $username = 'aaronnevalinz';
+        $apiKey = 'atsk_fd6c1e449d3eb1603d63f9d3ad4b00de879ff9add15be43c67bf377a85f304c7b42273af';
 
         $AT = new AfricasTalking($username, $apiKey);
 
@@ -20,7 +20,7 @@ class AfricasTalkingApi extends Controller
         $fields = $request->validate([
             'to' => 'required',
             'message' => 'required',
-            'from' => 'required'
+            // 'from' => 'required'
         ]);
 
         $result = $sms->send($fields);
