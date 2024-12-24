@@ -1,14 +1,22 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import GoBack from "../ui/GoBack";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Papa from 'papaparse';
+import { AppContext } from "../context/AppContext";
 
 
 
 export default function AddManually() {
 
+  const navigate = useNavigate();
+
   const [input, setInput] = useState('');
-  const [contacts, setContacts] = useState([]);
+  const {contacts, setContacts} = useContext(AppContext);
+  // const [contacts, setContacts] = useState([]);
+
+  useEffect(() => {
+    console.log(contacts);
+  }, [contacts])
 
   const handleSumit = (e) => {  
     e.preventDefault();
@@ -27,6 +35,8 @@ export default function AddManually() {
     });
     
     setContacts(formattedData);
+    navigate('/create');
+    
   }
 
 
@@ -52,9 +62,11 @@ export default function AddManually() {
             </p>
           </div>
 
-          <form className=" mt-8" action="" onSubmit={handleSumit}>
+          <form className=" mt-8 space-y-6" action="">
               <textarea name="" onChange={(e)=>setInput(e.target.value)} className="w-full h-64 rounded-lg outline-none bg-accent px-4 py-2" id=""></textarea>
-              <button className="bg-flamePea px-8 py-2 rounded-full mt-8 font-medium">Continue</button>
+              <div>
+                <Link onClick={handleSumit} to={'/create'} className="bg-flamePea px-8 py-2 rounded-full font-medium">Continue</Link>
+              </div>
           </form>
           
 
