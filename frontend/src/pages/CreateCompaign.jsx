@@ -4,7 +4,7 @@ import GoBack from "../ui/GoBack";
 import { AppContext } from "../context/AppContext";
 import { useContext, useState } from "react";
 export default function CreateCompaign() {
-  const {contacts} = useContext(AppContext);
+  const {contacts,setContacts} = useContext(AppContext);
   const [message, setMessage] = useState('');
 
 
@@ -23,6 +23,8 @@ export default function CreateCompaign() {
 
     const data = await res.json();
     console.log(data);
+    setContacts([]);
+    setMessage('');
     
   }
 
