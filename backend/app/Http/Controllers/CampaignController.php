@@ -35,9 +35,9 @@ class CampaignController extends Controller
     {
         //
         $fields = $request->validate([
-            'Name'=>'required',
-            'Status'=>'required',
-            'Audience'=>'required',
+            'name'=>'required',
+            'status'=>'required',
+            'audience'=>'required',
         ]);
 
         $campaign = Campaign::create($fields);

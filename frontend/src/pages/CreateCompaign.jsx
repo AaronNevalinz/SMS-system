@@ -1,10 +1,13 @@
 import { IoCheckmarkCircle } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import GoBack from "../ui/GoBack";
 import { AppContext } from "../context/AppContext";
 import { useContext, useState } from "react";
 export default function CreateCompaign() {
+  const navigate = useNavigate();
+
   const {contacts,setContacts} = useContext(AppContext);
+
   const [message, setMessage] = useState('');
 
 
@@ -25,7 +28,7 @@ export default function CreateCompaign() {
     console.log(data);
     setContacts([]);
     setMessage('');
-    
+    navigate('/')
   }
 
 

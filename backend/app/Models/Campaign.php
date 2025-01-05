@@ -11,8 +11,8 @@ class Campaign extends Model
     use HasFactory;
 
     protected $fillable = [
-        'Name',
-        'Status',
-        'Audience',
+        'name',
+        'status',
+        'audience',
     ];
 }

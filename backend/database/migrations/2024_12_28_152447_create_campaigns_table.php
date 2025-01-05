@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('campaigns', function (Blueprint $table) {
             $table->id();
-            $table->string('Name');
-            $table->enum('Status', ['Draft', 'Sent']);
-            $table->string('Audience');
+            $table->string('name');
+            $table->enum('status', ['Draft', 'Sent']);
+            $table->string('audience');
             $table->timestamps();
         });
     }
