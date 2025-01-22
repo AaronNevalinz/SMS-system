@@ -9,7 +9,7 @@ export default {
       colors:{
         background: "#07070E",
         primary: "#031930",
-        secondary: "#3684DB",
+        secondary: "#111999",
         flamePea: "#DB5A36",
         accent:"#1B2334",
         accentGray: "#808080",
@@ -17,6 +17,7 @@ export default {
       },
       fontFamily: {
         hanken: ['Hanken Grotesk', 'sans-serif'],
+        montserrat : ['Montserrat', 'sans-serif']
       },
     },
   },

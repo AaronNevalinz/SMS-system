@@ -11,8 +11,13 @@ class Campaign extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'title',
+        'message',
         'status',
-        'audience',
+        'recipients',
     ];
+    public function recipients()
+    {
+        return $this->hasMany(Recipients::class);
+    }
 }

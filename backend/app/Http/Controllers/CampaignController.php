@@ -13,11 +13,17 @@ class CampaignController extends Controller
     public function index()
     {
         //
-        $campaigns = Campaign::all();
+        $campaigns = Campaign::with('recipients')->get();
 
         return (
-            ['campaigns'=>$campaigns]
+            ['campaigns' => $campaigns]
         );
+        //
+        // $campaigns = Campaign::all();
+
+        // return (
+        //     ['campaigns'=>$campaigns]
+        // );
     }
 
     /**
@@ -33,11 +39,13 @@ class CampaignController extends Controller
      */
     public function store(Request $request)
     {
+        
         //
         $fields = $request->validate([
-            'name'=>'required',
+            'title'=>'required|string',
+            'message'=>'required|string',
             'status'=>'required',
-            'audience'=>'required',
+            'audience'=>'string',
         ]);
 
         $campaign = Campaign::create($fields);
@@ -54,6 +62,9 @@ class CampaignController extends Controller
     public function show(Campaign $campaign)
     {
         //
+        return (
+            ['campaign'=>$campaign]
+        );
     }
 
     /**
@@ -78,5 +89,7 @@ class CampaignController extends Controller
     public function destroy(Campaign $campaign)
     {
         //
+        $campaign->delete();
+        return (["Campaign"=>$campaign, 'message'=>'Campaign Deleted']);
     }
 }

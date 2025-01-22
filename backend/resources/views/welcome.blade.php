@@ -20,7 +20,7 @@
     
 
 {{-- side links --}}
-    <ul class="fixed gap-y-24 z-20 flex gap-x-16 uppercase text flex-col-reverse left-0 h-screen justify-center font-bold ">
+    {{-- <ul class="fixed gap-y-24 z-20 flex gap-x-16 uppercase text flex-col-reverse left-0 h-screen justify-center font-bold ">
         <li class="-rotate-90">
             <a href="/" class="bg-gradient-to-r from-purple-600 to-red-500 inline-block text-transparent bg-clip-text font-montserrat transition-all hover:text-gray-400">Home</a>
         </li>
@@ -36,7 +36,7 @@
         <li class="-rotate-90">
             <a href="" class="bg-gradient-to-r from-purple-600 to-red-500 inline-block text-transparent bg-clip-text font-montserrat transition-all hover:text-gray-400">Blog</a>
         </li>
-    </ul>
+    </ul> --}}
 
     {{-- <ul class="fixed gap-y-24 z-20 flex gap-x-16 capitalize text flex-col-reverse right-0 h-screen justify-center font-bold ">
         <li class="-rotate-90">
@@ -59,15 +59,15 @@
 
 
     {{-- Navigation section --}}
-    <nav class="flex justify-between items-center px-24 py-6 z-50 relative">
+    <nav class="flex justify-between items-center px-48 py-4 bg-black z-50 relative">
 
         {{-- logo --}}
         <a href="/">
-            <img src="images/logo.png" alt="" class="w-48">
+            <img src="images/logo.png" alt="" class="w-28">
         </a>
 
         {{-- nav-items --}}
-        <ul class="flex gap-x-16  text-lg font-medium uppercase">
+        <ul class="flex gap-x-16  text-sm font-bold uppercase ">
             <li>
                 <a href="#features" class="text-slate-400 hover:text-white transition-all">Features</a>
             </li>
@@ -83,18 +83,18 @@
         </ul>
 
         <div class="flex gap-x-10 items-center text-lg">
-            <a href="" class="text-slate-400 hover:text-white transition-all uppercase font-medium">Sign In</a>
-            <button class="bg-gradient-to-r from-orange-500 via-purple-500 to-purple-900 text-black px-4 py-1 rounded-lg text-lg font-bold">Request a Demo</button>
+            <a href="http://localhost:5173/login" class="text-slate-400 hover:text-white transition-all uppercase font-medium border px-4 py-1 text-sm rounded-lg">Login</a>
+            <button class="bg-gradient-to-r from-orange-500 via-purple-500 to-purple-900 text-black px-2 py-0.5 rounded-lg text-sm font-bold">Sign Up</button>
         </div>
     </nav>
 
     {{-- Hero Section --}}
-    <section class="pt-20 relative">
+    <section class="pt-28 relative">
         
         <div class="">
-            <p class="text-7xl w-[1200px] text-center mx-auto font-bold">
+            <p class="text-5xl w-[1200px] text-center mx-auto font-bold">
                 <span class="bg-gradient-to-r font-montserrat from-white via-purple-500 to-purple-900 inline-block text-transparent bg-clip-text ">Breathe Easy</span>
-                <span>as our system handles the  busy work</span>
+                <span>as our system handles the <br> busy work</span>
             </p>
             <p class="text-[#808080] text-xl text-center mt-4 font-medium">Unlock your business potential! 🎉 Experience measurable success 📈 from your hard work today! 💪</p>
             <div class="flex items-center justify-center gap-x-10 mt-24">

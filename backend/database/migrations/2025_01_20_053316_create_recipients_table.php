@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('campaigns', function (Blueprint $table) {
+        Schema::create('recipients', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->enum('status', ['Draft', 'Sent'])->nullable();
-            $table->text('message')->nullable();
-            $table->string('recipients')->nullable();
+            $table->string('number');
+            $table->string('status_code');
+            $table->string('status');
+            $table->foreignId('campaign_id')->constrained()->onDelete('cascade');
+            $table->string('cost');
+            $table->string('message_id');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('campaigns');
+        Schema::dropIfExists('recipients');
     }
 };

@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div className="bg-background min-h-screen w-full">
       <Navbar />
-      <div className="flex px-24 pt-16">
+      <div className="flex px-4 pt-16">
         <Sidebar />
         <Main />
       </div>
