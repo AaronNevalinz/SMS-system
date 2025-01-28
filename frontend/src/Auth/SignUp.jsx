@@ -5,7 +5,9 @@ import { AppContext } from "../context/AppContext";
 
 export default function SignUp() {
 
-    const {setToken} = useContext(AppContext);
+    const {setToken, user} = useContext(AppContext);
+    console.log(user);
+    
 
     const navigate = useNavigate();
 
@@ -24,17 +26,20 @@ export default function SignUp() {
 
         const res = await fetch('/api/register',{
             method:'POST',
-            body:JSON.stringify(formData)
+            body:JSON.stringify(formData) // convert from object to json formart
         })
 
         const data = await res.json()
 
-        if(data.errors){
+        if(data.errors || !res.ok){
             setErrors(data.errors)
+            console.log(data);
+            
           } else {
-            localStorage.setItem('token', data.token);
-            setToken(data.token);
-            navigate('/');
+            console.log(data.access_token);            
+            localStorage.setItem('token', data.access_token);
+            setToken(data.access_token);
+            // navigate('/');
           }
         
         
@@ -51,8 +56,9 @@ export default function SignUp() {
 
         <div className="flex flex-col items-center justify-center flex-1 relative z-20">
             <img src={logo} className="absolute top-0 left-0 w-36 mt-8 ml-8" alt="" />
-            <h4 className="font-black text-6xl mb-4">Sign Up</h4>
-            <p className="text-gray-400 text-center">Create your account to start your sending of bulk sms to your customers, don&apos;t   <br />sleep on your customers. </p>
+            <h4 className="font-black text-6xl mb-4">Sign Up</h4> 
+            
+            <p className="text-gray-400 text-center">Create your account to start your sending of bulk sms to your customers, don&apos;t   <br />sleep on your customers. {user?user.name:''} </p>
         </div>
         <div className="bg-[#171717] flex-1 lg:m-4 rounded-lg relative z-20">
            <div className="w-[500px] mx-auto md:mt-10 lg:mt-24 lg:space-y-8">

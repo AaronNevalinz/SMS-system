@@ -20,4 +20,8 @@ class Campaign extends Model
     {
         return $this->hasMany(Recipients::class);
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

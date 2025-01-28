@@ -6,10 +6,18 @@ use AfricasTalking\SDK\AfricasTalking;
 use App\Models\Campaign;
 use App\Models\Recipients;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
 
-class AfricasTalkingApi extends Controller
+class AfricasTalkingApi extends Controller implements HasMiddleware
 {
-    //
+    
+    public static function middleware()
+    {
+        return [
+            'auth:sanctum'
+        ];
+    }
+    
     public function sendSMS(Request $request)
     {
         $username = 'aaronnevalinz';
@@ -25,6 +33,11 @@ class AfricasTalkingApi extends Controller
             'title'=>'required',
         ]);
 
+        $user = $request->user();
+        if (!$user) {
+            return response()->json(['error' => 'User not authenticated'], 401);
+        }
+
         try {
             $result = $sms->send($fields);
         } catch (\Exception $e) {
@@ -37,7 +50,7 @@ class AfricasTalkingApi extends Controller
         }
         $recipients = $result['data']->SMSMessageData->Recipients;
 
-        $campaign = Campaign::create([
+        $campaign = $request->user()->campaigns()->create([
             'title' => $request->title ?? 'Untitled Campaign',
             'message' => $fields['message'],
             'recipients' => count($recipients),

@@ -4,8 +4,11 @@ import Button from "../ui/Button";
 import SubHeading from "../ui/SubHeading";
 import { Link } from "react-router-dom";
 import { computerGuy } from "../assets";
+import { useContext } from "react";
+import { AppContext } from "../context/AppContext";
 
 export default function Main() {
+    const {connects}=useContext(AppContext)
   return (
     <div className="mx-auto lg:max-w-[1280px] py-10 text-white lg:ml-[250px] overflow-y-scroll scrollbar-hide">
         <SubHeading text='Quick Actions'/>
@@ -13,7 +16,7 @@ export default function Main() {
         <div className="flex gap-4  mt-6 flex-col md:flex-row flex-wrap">
             <Button icon={<BiSolidMessageRounded />} textAction='Create SMS Campaign' link='/create'/>
             <Button link={'/add-contacts'} textAction={'Import Contacts'} icon={<FaUsers />}/>
-            <Button textAction={'Avaiable Connects'} icon={<FaUsers/>}/>
+            <Button textAction={'Avaiable Connects'} connects={connects?connects.connects:''} icon={<FaUsers/>}/>
         </div>
 
         <div className="mt-6">

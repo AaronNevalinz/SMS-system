@@ -7,14 +7,22 @@ import Campaigns from "./pages/Campaigns";
 import SignUp from "./Auth/SignUp";
 import Login from "./Auth/Login";
 import ImportContacts from "./pages/ImportContacts";
+import GenerateReport from "./pages/GenerateReport";
+import { useContext } from "react";
+import { AppContext } from "./context/AppContext";
 
 export default function App() {
 
+  const {user} = useContext(AppContext);
+
+  if(user){
+    console.log(user);
+  }
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/create" element={<CreateCompaign />} />
+        <Route path="/" element={user? <Home /> : <Login />} />
+        <Route path="/create" element={user ? <CreateCompaign /> : <Login />} />
         <Route path="/create/add-contacts" element={<AddContacts />} />
         <Route path="/create/add-contacts/add-manually" element={<AddManually />} />
         <Route path="/create/add-contacts/import-contacts" element={<ImportContacts />} />
@@ -23,10 +31,10 @@ export default function App() {
         <Route path="/404" element={<h1>Not Found</h1>} />
 
         <Route path="/campaigns" element={<Campaigns/>} />
-
+        <Route path="/ai.generatereports" element={<GenerateReport/>} />
         {/* Auth pages */}
-        <Route path="/signup" element={<SignUp/>} />
-        <Route path="/login" element={<Login/>} />
+        <Route path="/signup" element={user ? <Home /> : <SignUp/>} />
+        <Route path="/login" element={user ? <Home /> :<Login/>} />
       </Routes>
     </BrowserRouter>
   )

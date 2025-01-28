@@ -7,59 +7,9 @@ import { logo } from "../assets";
 export default function CreateCompaign() {
   const navigate = useNavigate();
 
-  const {contacts,setContacts, campaign, setCampaign} = useContext(AppContext);
+  const {contacts,setContacts, user, campaign, setCampaign} = useContext(AppContext);
 
   const [errors, setErrors] = useState({});
-
-  
-  
-
-
-  // const handleSend = async (e) => {
-  //   e.preventDefault();
-
-  //   console.log(contacts);
-    
-  //   console.log('Sending message', campaign.message);
-    
-  //   setCampaign({...campaign, status:"Sent"})
-    
-  //   const response = await fetch('/api/campaign', {
-  //     method: 'POST',
-  //     body: JSON.stringify(campaign)
-  //   });
-
-  //   const data = await response.json();
-    
-  //   console.log(data);
-    
-  //   setContacts([]);
-
-  //   if(data.errors){
-  //     setErrors(data.errors)
-  //   } else {
-      
-  //     const res = await fetch('/api/africastalking', {
-  //       method: 'POST',
-  //       body: JSON.stringify({
-  //         message: campaign.message,
-  //         to: contacts.map(contact => contact.phone)
-  //       })
-  //     });
-
-  //     const data = await res.json();
-
-  //     console.log(data);
-
-  //     setCampaign({
-  //       title: '',
-  //       message: '',
-  //       to: []
-  //     })
-      
-  //     navigate('/');
-  //   }
-  // }
 
 
   const handleSend = async (e) => {
@@ -71,20 +21,6 @@ export default function CreateCompaign() {
 
     setCampaign({ ...campaign, status: "Sent" });
 
-    // const response = await fetch('/api/campaign', {
-    //   method: 'POST',
-    //   body: JSON.stringify(campaign),
-    // });
-
-    // const data = await response.json();
-
-    // console.log(data);
-
-    // setContacts([]);
-
-    // if (data.errors) {
-    //   setErrors(data.errors);
-    // } else {
       const res = await fetch('/api/africastalking', {
         method: 'POST',
         headers: {

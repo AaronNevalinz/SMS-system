@@ -4,16 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Models\Campaign;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class CampaignController extends Controller
+class CampaignController extends Controller implements HasMiddleware
 {
+    public static function middleware()
+    {
+        return [
+            new Middleware('auth:sanctum')
+        ];
+    }
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $campaigns = Campaign::with('recipients')->get();
+        $user = $request->user();
+        
+        $campaigns = Campaign::where('user_id', $user->id)->with('recipients')->get();
 
         return (
             ['campaigns' => $campaigns]
@@ -62,9 +72,11 @@ class CampaignController extends Controller
     public function show(Campaign $campaign)
     {
         //
-        return (
-            ['campaign'=>$campaign]
-        );
+        if (!$campaign) {
+            return response()->json(['message' => 'Campaign not found'], 404);
+        }
+
+        return response()->json(['campaign' => $campaign], 200);
     }
 
     /**

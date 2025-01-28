@@ -18,7 +18,6 @@ return new class extends Migration
             $table->timestamp('avatar')->nullable();
             $table->string('phone')->nullable();
             $table->string('password');
-            $table->string('connects')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

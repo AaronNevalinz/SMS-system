@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom';
 import { TiHome } from "react-icons/ti";
 import { MdCampaign, MdSpatialAudioOff } from "react-icons/md";
+import { useContext } from 'react';
+import { AppContext } from '../context/AppContext';
 export default function Sidebar () {
+  const {connects} = useContext(AppContext)
   return (
     <div className="text-textColor border-r border-accent py-4 h-full hidden lg:block lg:w-[200px] pr-2 fixed">
       <p className=''>
@@ -34,15 +37,15 @@ export default function Sidebar () {
           </Link>
         </li>
         <li>
-          <Link to="/audience" className='flex items-center gap-2 hover:bg-accent py-2 rounded-md hover:text-[#142fff] transition-all px-4 '>
+          <Link to="/ai.generatereports" className='flex items-center gap-2 hover:bg-accent py-2 rounded-md hover:text-[#142fff] transition-all px-4 '>
             <MdSpatialAudioOff className="text-lg" />
-            <span>My Reports</span>
+            <span>Generate Reports</span>
           </Link>
         </li>
       </ul>
 
       <div className='bg-accent py-4 px-8 rounded-lg text-sm absolute bottom-20 space-y-2'>
-        <p className='text-white font-bold text-sm'>Connects: 120</p>
+        <p className='text-white font-bold text-sm'>Connects: {connects?connects.connects:''}</p>
         <p className='text-xs  underline text-flamePea font-semibold cursor-pointer'>
           <span>Buy Connects</span>
         </p>
