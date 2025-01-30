@@ -7,7 +7,7 @@ import { logo } from "../assets";
 export default function CreateCompaign() {
   const navigate = useNavigate();
 
-  const {contacts,setContacts, user, campaign, setCampaign} = useContext(AppContext);
+  const {contacts,setContacts, token, connects, campaign, setCampaign} = useContext(AppContext);
 
   const [errors, setErrors] = useState({});
 
@@ -25,6 +25,7 @@ export default function CreateCompaign() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
         },
         body: JSON.stringify({
           title: campaign.title,
@@ -84,8 +85,8 @@ export default function CreateCompaign() {
             { contacts.length > 0 ?
               <div className="border border-accent rounded-lg px-4 py-2 space-y-4">
                 <p className="text-xl font-bold">Campaign Settings</p>
-                <p>This Campaign requires {contacts.length} connects</p>
-                <p>You will have 240 connects left after sending this...</p>
+                <p>This Campaign requires {contacts.length} connect(s)</p>
+                <p>You will have {connects - contacts.length} connects left after sending this...</p>
               </div> : 
               null
             }

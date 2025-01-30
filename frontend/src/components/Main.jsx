@@ -10,13 +10,13 @@ import { AppContext } from "../context/AppContext";
 export default function Main() {
     const {connects}=useContext(AppContext)
   return (
-    <div className="mx-auto lg:max-w-[1280px] py-10 text-white lg:ml-[250px] overflow-y-scroll scrollbar-hide">
+    <>
         <SubHeading text='Quick Actions'/>
 
         <div className="flex gap-4  mt-6 flex-col md:flex-row flex-wrap">
             <Button icon={<BiSolidMessageRounded />} textAction='Create SMS Campaign' link='/create'/>
             <Button link={'/add-contacts'} textAction={'Import Contacts'} icon={<FaUsers />}/>
-            <Button textAction={'Avaiable Connects'} connects={connects?connects.connects:''} icon={<FaUsers/>}/>
+            <Button textAction={'Avaiable Connects'} connects={connects? connects :''} icon={<FaUsers/>}/>
         </div>
 
         <div className="mt-6">
@@ -99,6 +99,6 @@ export default function Main() {
             </div>
             
         </div>
-    </div>
+    </>
   )
 }

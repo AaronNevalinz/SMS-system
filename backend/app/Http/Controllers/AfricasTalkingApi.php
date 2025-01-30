@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use AfricasTalking\SDK\AfricasTalking;
-use App\Models\Campaign;
 use App\Models\Recipients;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
@@ -34,12 +33,23 @@ class AfricasTalkingApi extends Controller implements HasMiddleware
         ]);
 
         $user = $request->user();
+
         if (!$user) {
             return response()->json(['error' => 'User not authenticated'], 401);
         }
 
         try {
             $result = $sms->send($fields);
+            $connects = $user->connects->connects;
+            $successful = 0;
+            foreach ($result['data']->SMSMessageData->Recipients as $recipient) {
+                if ($recipient->statusCode === 101) {
+                    $successful++;
+                }
+            }
+            $connects -= $successful;
+            $user->connects->update(['connects' => $connects]);
+            
         } catch (\Exception $e) {
             return response()->json(['error' => 'Failed to send SMS: ' . $e->getMessage()]);
         }

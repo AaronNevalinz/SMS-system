@@ -24,7 +24,7 @@ export default function AppProvider({children}){
         if (res.ok) {
             const data = await res.json();
             setUser(data.user);
-            setConnects(data.connects);
+            setConnects(data.connects.connects);
             console.log(data);
         } else {
             console.error('Failed to fetch user:', res.statusText);
